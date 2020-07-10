@@ -14,7 +14,7 @@ export class PropertyCardComponent implements OnInit {
         "Id": 1,
         "Name": "White House",
         "Type": "House",
-        "Price": 50000
+        "Price": 60000
     }
     ngOnInit(): void {
     }
