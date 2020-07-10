@@ -1,0 +1,56 @@
+[
+    {
+    "Id": 1,
+    "Name": "White House",
+    "Type": "House",
+    "Price": 50000
+    },
+    {
+        "Id": 2,
+        "Name": "Green House",
+        "Type": "House",
+        "Price": 60000
+    },
+    {
+        "Id": 3,
+        "Name": "Blue House",
+        "Type": "House",
+        "Price": 70000
+    }, 
+    {
+      "Id": 1,
+      "Name": "White House",
+      "Type": "House",
+      "Price": 50000
+    },
+    {
+        "Id": 2,
+        "Name": "Green House",
+        "Type": "House",
+        "Price": 60000
+    },
+    {
+        "Id": 3,
+        "Name": "Blue House",
+        "Type": "House",
+        "Price": 70000
+    }, 
+    {
+    "Id": 1,
+    "Name": "White House",
+    "Type": "House",
+    "Price": 50000
+    },
+    {
+        "Id": 2,
+        "Name": "Green House",
+        "Type": "House",
+        "Price": 60000
+    },
+    {
+        "Id": 3,
+        "Name": "Blue House",
+        "Type": "House",
+        "Price": 70000
+    }
+]
