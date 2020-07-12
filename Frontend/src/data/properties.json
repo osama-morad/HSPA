@@ -52,20 +52,23 @@
         "Name": "White House",
         "Type": "House",
         "Price": 50000,
-        "SellRent": 1
+        "SellRent": 1,
+        "Image": "prop7"
     },
     {
         "Id": 8,
         "Name": "Green House",
         "Type": "House",
         "Price": 60000,
-        "SellRent": 1
+        "SellRent": 1,
+        "Image": "prop8"
     },
     {
         "Id": 9,
         "Name": "Blue House",
         "Type": "House",
         "Price": 70000,
-        "SellRent": 2
+        "SellRent": 2,
+        "Image": "prop9"
     }
 ]

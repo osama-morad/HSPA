@@ -17,7 +17,7 @@ export class PropertyListComponent implements OnInit {
   constructor(private route:ActivatedRoute, private housingService:HousingService) { }
 
   ngOnInit(): void {
-    if (this.route.snapshot.url.toString()){
+    if (this.route.snapshot.url.toString()==='rent-property'){
       this.SellRent = 2; //Rent
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(
@@ -29,6 +29,7 @@ export class PropertyListComponent implements OnInit {
         console.log(error);
       }
     );
+    console.log(this.SellRent);
   }
 
 }

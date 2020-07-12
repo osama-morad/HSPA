@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HousingService } from 'src/app/services/housing.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
       RouterModule.forRoot(appRoutes)
    ],
    providers: [
-      HousingService
+      HousingService,
+      UserServiceService
    ],
    bootstrap: [
       AppComponent
