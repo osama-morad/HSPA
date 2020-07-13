@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { BrowserModule } from '@angular/platform-browser';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { User } from 'src/app/model/user';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import * as alertifyjsMsg from 'alertifyjs';
 
 @Component({
   selector: 'app-user-register',
@@ -13,7 +15,9 @@ export class UserRegisterComponent implements OnInit {
   formSubmitted: boolean;
   registrationForm: FormGroup;
   userData: User;
-  constructor(private fb: FormBuilder, private userService: UserServiceService) { }
+  constructor(private fb: FormBuilder, 
+              private userService: UserServiceService,
+              private alertMsg: AlertifyService) { }
 
   ngOnInit() {
     // this.registrationForm = new FormGroup(
@@ -68,6 +72,10 @@ export class UserRegisterComponent implements OnInit {
       this.userService.addUserToBrowserLocalStorage(this.getUserData());
       this.registrationForm.reset();
       this.formSubmitted = false;
+      this.alertMsg.successMsg("Successfully registered your account");
+    }
+    else{
+      this.alertMsg.errorMsg("Kindly enter valid information");
     }
   }
 

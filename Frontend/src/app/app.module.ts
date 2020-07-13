@@ -4,6 +4,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HousingService } from 'src/app/services/housing.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -41,11 +44,14 @@ const appRoutes: Routes = [
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      BrowserAnimationsModule,
+      BsDropdownModule.forRoot()
    ],
    providers: [
       HousingService,
-      UserServiceService
+      UserServiceService,
+      AuthenticateService
    ],
    bootstrap: [
       AppComponent

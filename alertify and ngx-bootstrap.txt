@@ -1,0 +1,2 @@
+npm install ngx-bootstrap --save
+npm install alertifyjs --save
