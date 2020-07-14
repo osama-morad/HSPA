@@ -3,28 +3,32 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { IProperty } from '../property/IProperty.interface';
 import { Observable } from 'rxjs';
+import { Property } from '../model/property';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HousingService {
 
-constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-getAllProperties(sellRent: number): Observable<IProperty[]>{
-  return this.http.get('data/properties.json').pipe(
-    map(data => {
-      const propertyArray: Array<IProperty> = [];
-      for (const id in data)
-      {
-        if (data.hasOwnProperty(id) && data[id].SellRent === sellRent)
+  getAllProperties(sellRent: number): Observable<IProperty[]>{
+    return this.http.get('data/properties.json').pipe(
+      map(data => {
+        const propertyArray: Array<IProperty> = [];
+        for (const id in data)
         {
-          propertyArray.push(data[id]);
+          if (data.hasOwnProperty(id) && data[id].SellRent === sellRent)
+          {
+            propertyArray.push(data[id]);
+          }
         }
-      }
-      return propertyArray;
-    })
-  );
-}
+        return propertyArray;
+      })
+    );
+  }
 
+  addProperty(property: Property) {
+    localStorage.setItem('newProp', JSON.stringify(property));
+  }
 }
