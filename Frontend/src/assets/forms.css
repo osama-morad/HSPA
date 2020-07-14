@@ -22,3 +22,7 @@
     padding: 4px 10px !important;
     background-color: #007bff !important;
 }
+
+.custom-today-class {
+    background-color: lightblue;
+}
