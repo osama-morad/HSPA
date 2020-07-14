@@ -200,7 +200,7 @@ export class AddPropertyComponent implements OnInit {
     if (this.allTabsValid()) {
       this.mapProperty();
       this.housingService.addProperty(this.property);
-      this.alertify.success('Congrats, your property listed successfully on our website');
+      this.alertify.successMsg('Congrats, your property listed successfully on our website');
       console.log(this.addPropertyForm);
 
       if(this.SellRent.value === '2') {
@@ -211,7 +211,7 @@ export class AddPropertyComponent implements OnInit {
 
 
     } else {
-      this.alertify.error('Please review the form and provide all valid entries');
+      this.alertify.errorMsg('Please review the form and provide all valid entries');
     }
   }
 
