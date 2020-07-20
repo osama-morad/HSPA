@@ -33,7 +33,7 @@ export class AddPropertyComponent implements OnInit {
     FType: null,
     BHK: null,
     BuiltArea: null,
-    City: null,
+    City: String(this.getCurrentLocation()),
     RTM: null
   };
 
@@ -45,6 +45,19 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit() {
     this.CreateAddPropertyForm();
+  }
+
+  getCurrentLocation(){
+    if (!navigator.geolocation){
+      console.log('Location not supported');
+      return 'no location';
+    }else{
+      return navigator.geolocation.getCurrentPosition((position) => {
+        console.log('Latitude: '+position.coords.latitude);
+        console.log('Longitude: ', position.coords.longitude);
+        return String(position.coords.latitude);
+      });
+    }
   }
 
   CreateAddPropertyForm() {
