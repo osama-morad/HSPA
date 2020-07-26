@@ -6,6 +6,7 @@ import { IPropertyBase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { HereLocationService } from 'src/app/services/hereLocation.service';
 
 
 @Component({
@@ -37,17 +38,33 @@ export class AddPropertyComponent implements OnInit {
     RTM: null
   };
 
+  public position: string;
+  public locations: Array<any>;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private housingService: HousingService,
-    private alertify: AlertifyService) { }
+    private alertify: AlertifyService,
+    private hereLocation: HereLocationService) { }
 
   ngOnInit() {
     this.CreateAddPropertyForm();
     this.getCurrentLocationAddress();
+    this.getAddressFromLatLng();
   }
 
+  public getAddressFromLatLng() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.position = String(position.coords.latitude) + ',' + String(position.coords.longitude);
+    });  
+    this.hereLocation.getAddressFromLatLng(this.position).then(result => {
+        this.locations = <Array<any>>result;
+        console.log('Longitude: ', result);
+      }, error => {
+        console.error(error);
+    });
+}
   getCurrentLocationAddress(){
     if (!navigator.geolocation){
       console.log('Location not supported');

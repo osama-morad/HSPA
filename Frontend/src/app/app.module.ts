@@ -10,6 +10,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { HereLocationService } from 'src/app/services/hereLocation.service';
 
 import { AppComponent } from './app.component';
 import { PropertyCardComponent } from './property/property-card/property-card.component';
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
    providers: [
       HousingService,
       UserServiceService,
-      AuthenticateService
+      AuthenticateService,
+      HereLocationService
    ],
    bootstrap: [
       AppComponent
