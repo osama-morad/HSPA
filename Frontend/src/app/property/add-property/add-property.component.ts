@@ -7,6 +7,7 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HereLocationService } from 'src/app/services/hereLocation.service';
+import { __await } from 'tslib';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class AddPropertyComponent implements OnInit {
 
   public position: string;
   public locations: Array<any>;
+  public address: string="";
 
   constructor(
     private fb: FormBuilder,
@@ -49,29 +51,45 @@ export class AddPropertyComponent implements OnInit {
     private hereLocation: HereLocationService) { }
 
   ngOnInit() {
-    this.CreateAddPropertyForm();
-    this.getCurrentLocationAddress();
     this.getAddressFromLatLng();
+    //this.getCurrentLocationAddress();
+    this.CreateAddPropertyForm();
   }
 
   public getAddressFromLatLng() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.position = String(position.coords.latitude) + ',' + String(position.coords.longitude);
-    });  
-    this.hereLocation.getAddressFromLatLng(this.position).then(result => {
+      console.log(this.position);
+      this.hereLocation.getAddressFromLatLng(this.position).then(result => {
         this.locations = <Array<any>>result;
-        console.log('Longitude: ', result);
+        //console.log(JSON.stringify(this.locations));
+        this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
+        this.address = this.locations[0].Location.Address.Label;
+        console.log(this.address);
       }, error => {
-        console.error(error);
-    });
-}
+          console.error(error);
+      });
+    });  
+    // if(this.position != "") {
+    //   console.log('inside get Address');
+    //   this.hereLocation.getAddressFromLatLng(this.position).then(result => {
+    //       this.locations = <Array<any>>result;
+    //       //console.log(JSON.stringify(this.locations));
+    //       this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
+    //       this.address = this.locations[0].Location.Address.Label;
+    //       console.log(this.address);
+    //   }, error => {
+    //       console.error(error);
+    //   });
+    // }
+  }
   getCurrentLocationAddress(){
     if (!navigator.geolocation){
       console.log('Location not supported');
     }else{
        navigator.geolocation.getCurrentPosition((position) => {
-        console.log('Latitude: ', String(position.coords.latitude));
-        console.log('Longitude: ', position.coords.longitude);
+        // console.log('Latitude: ', String(position.coords.latitude));
+        // console.log('Longitude: ', position.coords.longitude);
         this.propertyView.City = 'Latitude: ' + String(position.coords.latitude) + ' - Longitude: ' + String(position.coords.longitude);
       });
     }

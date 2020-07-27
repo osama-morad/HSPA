@@ -9,13 +9,10 @@ export class HereLocationService {
 
     public platform: any;
     public geocoder: any;
-
+ 
     public constructor() {
         this.platform = new H.service.Platform({
-            // "app_id": "vYTn2iDrrcGWNM9lVZUl",
-            // "app_id": "APP-ID-HERE",
-            // "app_code": "APP-CODE-HERE"
-            "apikey": "U_mL7PK1X60RAjZUOF4Wsbhj0j_lD084cFRbNNIn0nU"
+          "apikey": "U_mL7PK1X60RAjZUOF4Wsbhj0j_lD084cFRbNNIn0nU"
         });
         this.geocoder = this.platform.getGeocodingService();
     }
@@ -37,10 +34,10 @@ export class HereLocationService {
         });
       });
     }
-
-    public getAddressFromLatLng(query: string) {
+//"29.305684599999996,48.0307709"
+    public getAddressFromLatLng(strquery: string) {
       return new Promise((resolve, reject) => {
-        this.geocoder.reverseGeocode({ prox: query, mode: "retrieveAddress" }, result => {
+        this.geocoder.reverseGeocode({ prox: strquery, mode: "retrieveAddress" }, result => {
             if(result.Response.View.length > 0) {
                 if(result.Response.View[0].Result.length > 0) {
                     resolve(result.Response.View[0].Result);

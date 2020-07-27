@@ -187,7 +187,8 @@
                   <label>Address</label>
                   <input type="text"
                   class="form-control"
-                  formControlName="Address">
+                  formControlName="Address"
+                  [(ngModel)]="address">
                   <div class="error-block"
                   *ngIf="Address.invalid && (nextClicked || Address.touched)">
                     Please select address
