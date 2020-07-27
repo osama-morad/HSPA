@@ -7,8 +7,6 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HereLocationService } from 'src/app/services/hereLocation.service';
-import { __await } from 'tslib';
-
 
 @Component({
   selector: 'app-add-property',
@@ -21,6 +19,11 @@ export class AddPropertyComponent implements OnInit {
   addPropertyForm: FormGroup;
   nextClicked: boolean;
   property = new Property();
+
+  // Map section
+  latitude: number;
+  longitude: number;
+  zoom:number;
 
   // Will come from masters
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex']
@@ -59,6 +62,13 @@ export class AddPropertyComponent implements OnInit {
   public getAddressFromLatLng() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.position = String(position.coords.latitude) + ',' + String(position.coords.longitude);
+
+      //Map section
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.zoom = 15;
+      console.log('Lat: ' + this.latitude+' - Long: ' + this.longitude+' - Zoom: ' + +this.zoom);
+
       console.log(this.position);
       this.hereLocation.getAddressFromLatLng(this.position).then(result => {
         this.locations = <Array<any>>result;
@@ -70,18 +80,6 @@ export class AddPropertyComponent implements OnInit {
           console.error(error);
       });
     });  
-    // if(this.position != "") {
-    //   console.log('inside get Address');
-    //   this.hereLocation.getAddressFromLatLng(this.position).then(result => {
-    //       this.locations = <Array<any>>result;
-    //       //console.log(JSON.stringify(this.locations));
-    //       this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
-    //       this.address = this.locations[0].Location.Address.Label;
-    //       console.log(this.address);
-    //   }, error => {
-    //       console.error(error);
-    //   });
-    // }
   }
   getCurrentLocationAddress(){
     if (!navigator.geolocation){

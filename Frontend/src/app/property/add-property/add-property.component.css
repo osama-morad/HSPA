@@ -5,3 +5,7 @@
     border: 1px dashed blue;
     margin: 5px;
   }
+
+  .agm-map {
+    height: 200px;
+}
