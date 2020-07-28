@@ -21,7 +21,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
-
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
    { path: '', component: PropertyListComponent },
@@ -55,7 +55,11 @@ const appRoutes: Routes = [
       TabsModule.forRoot(),
       ButtonsModule.forRoot(),
       BrowserAnimationsModule,
-      BsDatepickerModule.forRoot()
+      BsDatepickerModule.forRoot(),
+      AgmCoreModule.forRoot({
+         apiKey: 'AIzaSyC-V4vfs6kHlkgNbHrBTtyWhNs38RwfV70',//'AIzaSyBDrVAyeY_NCNR5VTiepgIKB1o3P90f0WE',
+         libraries: ['places']
+       })
    ],
    providers: [
       HousingService,

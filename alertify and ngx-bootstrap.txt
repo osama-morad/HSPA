@@ -1,2 +1,5 @@
 npm install ngx-bootstrap --save
 npm install alertifyjs --save
+
+npm install @agm/core --save
+npm install @types/googlemaps --save-dev
