@@ -7,6 +7,7 @@ import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HereLocationService } from 'src/app/services/hereLocation.service';
+import {  AfterViewInit, ElementRef } from  '@angular/core';
 
 @Component({
   selector: 'app-add-property',
@@ -15,6 +16,7 @@ import { HereLocationService } from 'src/app/services/hereLocation.service';
 })
 export class AddPropertyComponent implements OnInit {
   // @ViewChild('Form') addPropertyForm: NgForm;
+  @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
   @ViewChild('formTabs') formTabs: TabsetComponent;
   addPropertyForm: FormGroup;
   nextClicked: boolean;
@@ -24,6 +26,10 @@ export class AddPropertyComponent implements OnInit {
   latitude: number;
   longitude: number;
   zoom:number;
+  map: google.maps.Map;
+  coordinates: google.maps.LatLng;
+  mapOptions: google.maps.MapOptions;
+  marker: google.maps.Marker;
 
   // Will come from masters
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex']
@@ -57,7 +63,7 @@ export class AddPropertyComponent implements OnInit {
     this.getAddressFromLatLng();
     //this.getCurrentLocationAddress();
     this.CreateAddPropertyForm();
-  }
+    }
 
   public getAddressFromLatLng() {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -76,6 +82,16 @@ export class AddPropertyComponent implements OnInit {
         this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
         this.address = this.locations[0].Location.Address.Label;
         console.log(this.address);
+        this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
+        this.mapOptions  = {
+          center: this.coordinates,
+          zoom: this.zoom
+         };
+         this.marker = new google.maps.Marker({
+          position: this.coordinates,
+          map: this.map,
+        });
+        this.mapInitializer();
       }, error => {
           console.error(error);
       });
@@ -91,6 +107,12 @@ export class AddPropertyComponent implements OnInit {
         this.propertyView.City = 'Latitude: ' + String(position.coords.latitude) + ' - Longitude: ' + String(position.coords.longitude);
       });
     }
+  }
+
+   mapInitializer() {
+    this.map = new google.maps.Map(this.gmap.nativeElement, 
+    this.mapOptions);
+    this.marker.setMap(this.map);
   }
 
   CreateAddPropertyForm() {

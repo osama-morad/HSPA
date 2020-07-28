@@ -57,7 +57,7 @@ const appRoutes: Routes = [
       BrowserAnimationsModule,
       BsDatepickerModule.forRoot(),
       AgmCoreModule.forRoot({
-         apiKey: 'AIzaSyC-V4vfs6kHlkgNbHrBTtyWhNs38RwfV70',//'AIzaSyBDrVAyeY_NCNR5VTiepgIKB1o3P90f0WE',
+         apiKey: 'AIzaSyCfE339LfYiWOPVIUB_DHh3IMS3nc5iBuQ',//'AIzaSyC-V4vfs6kHlkgNbHrBTtyWhNs38RwfV70',
          libraries: ['places']
        })
    ],

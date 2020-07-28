@@ -169,7 +169,7 @@
 
               <tab heading="Address" formGroupName="AddressInfo">
                 <div class="form-group col-12">
-                  <div class="form-group col-4 mr1">
+                  <div class="col-4 mr1">
                     <div class="form-group col-12">
                       <label>Floor</label>
                       <input type="text"
@@ -192,18 +192,17 @@
                       class="form-control">
                     </div>
                   </div>
-                  <div class="form-group col-8 ml1">
-                    
-                    <!-- app.component.html -->
-                    <agm-map 
-                    [latitude]="latitude" 
-                    [longitude]="longitude" 
-                    [zoom]="zoom" >
-                      <agm-marker 
+                  <div class="col-8 ml1">
+                    <div #mapContainer id="map">
+                      <!-- <agm-map 
                       [latitude]="latitude" 
-                      [longitude]="longitude"></agm-marker>
-                    </agm-map>
-                    
+                      [longitude]="longitude" 
+                      [zoom]="zoom" >
+                        <agm-marker 
+                        [latitude]="latitude" 
+                        [longitude]="longitude"></agm-marker>
+                      </agm-map> -->
+                    </div>
                   </div>
                 </div>
                 <div class="form-group col-12">
