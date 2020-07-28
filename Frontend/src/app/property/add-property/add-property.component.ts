@@ -113,6 +113,36 @@ export class AddPropertyComponent implements OnInit {
     this.map = new google.maps.Map(this.gmap.nativeElement, 
     this.mapOptions);
     this.marker.setMap(this.map);
+    //Adding Click event to default marker
+    this.map.addListener("click", (e) => {
+      this.handleMapClick(e);
+    });
+  }
+
+  handleMapClick(e)
+  {
+    //console.log(e.latLng.lat());
+    //console.log(e.latLng.lng());
+    this.position = String(e.latLng.lat()) + ',' + String(e.latLng.lng());
+    //console.log(this.position);
+    this.hereLocation.getAddressFromLatLng(this.position).then(result => {
+      this.locations = <Array<any>>result;
+      this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
+      this.address = this.locations[0].Location.Address.Label;
+      //console.log(this.address);
+      this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
+      this.mapOptions  = {
+        center: this.coordinates,
+        zoom: this.zoom
+       };
+       this.marker = new google.maps.Marker({
+        position: this.coordinates,
+        map: this.map,
+      });
+      //this.marker.setMap(this.map);
+    }, error => {
+        console.error(error);
+    });
   }
 
   CreateAddPropertyForm() {

@@ -169,40 +169,41 @@
 
               <tab heading="Address" formGroupName="AddressInfo">
                 <div class="form-group col-12">
-                  <div class="col-4 mr1">
+                  <div #mapContainer id="map">
+                    <!-- <agm-map 
+                    [latitude]="latitude" 
+                    [longitude]="longitude" 
+                    [zoom]="zoom" >
+                      <agm-marker 
+                      [latitude]="latitude" 
+                      [longitude]="longitude"></agm-marker>
+                    </agm-map> -->
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <div class="col-6 mr1">
                     <div class="form-group col-12">
                       <label>Floor</label>
                       <input type="text"
                       formControlName="FloorNo"
                       class="form-control">
                     </div>
-    
+                  </div>
+                  <div class="col-6 ml1">
                     <div class="form-group col-12">
                       <label>Total Floor</label>
                       <input type="text"
                       formControlName="TotalFloor"
                       class="form-control">
                     </div>
-    
-    
-                    <div class="form-group col-12">
-                      <label>Landmark</label>
-                      <input type="text"
-                      formControlName="LandMark"
-                      class="form-control">
-                    </div>
                   </div>
-                  <div class="col-8 ml1">
-                    <div #mapContainer id="map">
-                      <!-- <agm-map 
-                      [latitude]="latitude" 
-                      [longitude]="longitude" 
-                      [zoom]="zoom" >
-                        <agm-marker 
-                        [latitude]="latitude" 
-                        [longitude]="longitude"></agm-marker>
-                      </agm-map> -->
-                    </div>
+                </div>
+                <div class="form-group col-12">
+                  <div class="form-group col-12">
+                    <label>Landmark</label>
+                    <input type="text"
+                    formControlName="LandMark"
+                    class="form-control">
                   </div>
                 </div>
                 <div class="form-group col-12">
