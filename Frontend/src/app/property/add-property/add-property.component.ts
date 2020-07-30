@@ -72,10 +72,10 @@ export class AddPropertyComponent implements OnInit {
       //Map section
       this.latitude = position.coords.latitude;
       this.longitude = position.coords.longitude;
-      this.zoom = 15;
-      console.log('Lat: ' + this.latitude+' - Long: ' + this.longitude+' - Zoom: ' + +this.zoom);
+      this.zoom = 18;
+      //console.log('Lat: ' + this.latitude+' - Long: ' + this.longitude+' - Zoom: ' + +this.zoom);
 
-      console.log(this.position);
+      //console.log(this.position);
       this.hereLocation.getAddressFromLatLng(this.position).then(result => {
         this.locations = <Array<any>>result;
         //console.log(JSON.stringify(this.locations));
@@ -90,6 +90,8 @@ export class AddPropertyComponent implements OnInit {
          this.marker = new google.maps.Marker({
           position: this.coordinates,
           map: this.map,
+          title: 'Desired location',
+          draggable: true
         });
         this.mapInitializer();
       }, error => {
@@ -113,36 +115,59 @@ export class AddPropertyComponent implements OnInit {
     this.map = new google.maps.Map(this.gmap.nativeElement, 
     this.mapOptions);
     this.marker.setMap(this.map);
-    //Adding Click event to default marker
-    this.map.addListener("click", (e) => {
-      this.handleMapClick(e);
+    
+    // this.map.addListener("click", (e) => {
+    //   this.handleMapClick(e);
+    // });
+    //Adding Dragend event to marker
+    this.marker.addListener("dragend", (e) => {
+      this.handleDragEnd(e)
     });
   }
 
   handleMapClick(e)
   {
-    //console.log(e.latLng.lat());
-    //console.log(e.latLng.lng());
     this.position = String(e.latLng.lat()) + ',' + String(e.latLng.lng());
-    //console.log(this.position);
     this.hereLocation.getAddressFromLatLng(this.position).then(result => {
       this.locations = <Array<any>>result;
+      //console.log(JSON.stringify(this.locations));
       this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
       this.address = this.locations[0].Location.Address.Label;
       //console.log(this.address);
-      this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
-      this.mapOptions  = {
-        center: this.coordinates,
-        zoom: this.zoom
-       };
-       this.marker = new google.maps.Marker({
-        position: this.coordinates,
-        map: this.map,
-      });
+      // this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
+      // this.mapOptions  = {
+      //   center: this.coordinates,
+      //   zoom: this.zoom
+      //  };
+    }, error => {
+        console.error(error);
+    });
+  }
+
+  handleDragEnd(e)
+  {
+     this.position = String(e.latLng.lat()) + ',' + String(e.latLng.lng());
+    //console.log(this.position);
+    this.hereLocation.getAddressFromLatLng(this.position).then(result => {
+      this.locations = <Array<any>>result;
+      //console.log(JSON.stringify(this.locations));
+      this.propertyView.City = this.locations[0].Location.Address.AdditionalData[1].value; 
+      this.address = this.locations[0].Location.Address.Label;
+      //console.log(this.address);
+      // this.coordinates = new google.maps.LatLng(this.latitude, this.longitude);
+      // this.mapOptions  = {
+      //   center: this.coordinates,
+      //   zoom: this.zoom
+      //  };
       //this.marker.setMap(this.map);
     }, error => {
         console.error(error);
     });
+  }
+
+  getAddress(place: object) { 
+    this.address = place['formatted_address'];
+    console.log('getAddress');
   }
 
   CreateAddPropertyForm() {

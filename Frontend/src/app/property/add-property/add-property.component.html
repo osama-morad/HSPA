@@ -169,6 +169,7 @@
 
               <tab heading="Address" formGroupName="AddressInfo">
                 <div class="form-group col-12">
+                  <AutoCompleteGoogleAddressComponent (setAddress)="getAddress($event)" adressType="geocode"></AutoCompleteGoogleAddressComponent>
                   <div #mapContainer id="map">
                     <!-- <agm-map 
                     [latitude]="latitude" 

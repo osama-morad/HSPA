@@ -37,7 +37,7 @@ export class HereLocationService {
 //"29.305684599999996,48.0307709"
     public getAddressFromLatLng(strquery: string) {
       return new Promise((resolve, reject) => {
-        this.geocoder.reverseGeocode({ prox: strquery, mode: "retrieveAddress" }, result => {
+        this.geocoder.reverseGeocode({ prox: strquery, mode: "retrieveAddress", language: "ar" }, result => {
             if(result.Response.View.length > 0) {
                 if(result.Response.View[0].Result.length > 0) {
                     resolve(result.Response.View[0].Result);

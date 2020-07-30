@@ -21,6 +21,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { AutoCompleteGoogleAddressComponent } from './autoCompleteGoogleAddress/autoCompleteGoogleAddress.component'
 import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
       AddPropertyComponent,
       PropertyDetailComponent,
       UserLoginComponent,
-      UserRegisterComponent
+      UserRegisterComponent,
+      AutoCompleteGoogleAddressComponent
    ],
    imports: [
       BrowserModule,
