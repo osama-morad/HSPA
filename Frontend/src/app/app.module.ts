@@ -23,6 +23,8 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { AutoCompleteGoogleAddressComponent } from './autoCompleteGoogleAddress/autoCompleteGoogleAddress.component'
 import { AgmCoreModule } from '@agm/core';
+import { GoogleAddressLocationComponent } from './googleAddressLocation/googleAddressLocation.component';
+import { GoogleLocationService } from './services/googleLocation.service';
 
 const appRoutes: Routes = [
    { path: '', component: PropertyListComponent },
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
       PropertyDetailComponent,
       UserLoginComponent,
       UserRegisterComponent,
-      AutoCompleteGoogleAddressComponent
+      AutoCompleteGoogleAddressComponent,
+      GoogleAddressLocationComponent
    ],
    imports: [
       BrowserModule,
@@ -67,7 +70,8 @@ const appRoutes: Routes = [
       HousingService,
       UserServiceService,
       AuthenticateService,
-      HereLocationService
+      HereLocationService,
+      GoogleLocationService
    ],
    bootstrap: [
       AppComponent

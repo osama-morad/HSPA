@@ -8,6 +8,7 @@ import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { HereLocationService } from 'src/app/services/hereLocation.service';
 import {  AfterViewInit, ElementRef } from  '@angular/core';
+import { AddressInfo } from 'src/app/model/addressInfo';
 
 @Component({
   selector: 'app-add-property',
@@ -25,7 +26,7 @@ export class AddPropertyComponent implements OnInit {
   // Map section
   latitude: number;
   longitude: number;
-  zoom:number;
+  zoom:number=18;
   map: google.maps.Map;
   coordinates: google.maps.LatLng;
   mapOptions: google.maps.MapOptions;
@@ -168,6 +169,11 @@ export class AddPropertyComponent implements OnInit {
   getAddress(place: object) { 
     this.address = place['formatted_address'];
     console.log('getAddress');
+  }
+
+  getAddressInfo(addressInfo: AddressInfo){
+    this.address = addressInfo.address;
+    this.propertyView.City = addressInfo.county_gov + '-' + addressInfo.city;
   }
 
   CreateAddPropertyForm() {
