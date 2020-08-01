@@ -72,9 +72,9 @@ export class GoogleAddressLocationComponent implements OnInit {
         this.googleLocation.geocodeAddress(this.position).then(result => {
         this.locations = <Array<any>>result;
         console.log(JSON.stringify(this.locations));
-        this.addressInfo.city = this.locations.address_components[2].long_name;//.AdditionalData[1].value; 
-        this.addressInfo.county_gov = this.locations.address_components[3].long_name;
-        this.addressInfo.address = this.locations.formatted_address;
+        this.addressInfo.city = this.locations['address_components'][2]['long_name'];//.AdditionalData[1].value; 
+        this.addressInfo.county_gov = this.locations['address_components'][3]['long_name'];
+        this.addressInfo.address = this.locations['formatted_address'];
         this.mapInitializer();
         this.invokeEvent(this.addressInfo);
       }, error => {

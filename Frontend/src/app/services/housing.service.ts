@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { IProperty } from '../property/IProperty.interface';
+import { IPropertyBase } from '../model/IPropertyBase';
 import { Observable } from 'rxjs';
 import { Property } from '../model/property';
 
@@ -12,24 +13,41 @@ export class HousingService {
 
   constructor(private http:HttpClient) { }
 
-  getAllProperties(sellRent: number): Observable<IProperty[]>{
+  getProperty(Id: number){
+    return this.getAllProperties().pipe(
+      map(propertiesArray => {
+        return propertiesArray.find(p => p.Id === Id);
+      })
+    );
+  }
+  getAllProperties(sellRent?: number): Observable<IPropertyBase[]>{
     return this.http.get('data/properties.json').pipe(
       map(data => {
-        const propertyArray: Array<IProperty> = [];
+        const propertyArray: Array<IPropertyBase> = [];
         const newProperties = JSON.parse(localStorage.getItem('newProp'));
         if (newProperties){
           for (const id in newProperties)
           {
-            if (data.hasOwnProperty(id) && newProperties[id].SellRent === sellRent)
-            {
+            if (sellRent){
+              if (data.hasOwnProperty(id) && newProperties[id].SellRent === sellRent)
+              {
+                propertyArray.push(newProperties[id]);
+              }     
+            }
+            else{
               propertyArray.push(newProperties[id]);
             }
           }
-          }
+        }
         for (const id in data)
         {
-          if (data.hasOwnProperty(id) && data[id].SellRent === sellRent)
-          {
+          if (sellRent){
+            if (data.hasOwnProperty(id) && data[id].SellRent === sellRent)
+            {
+              propertyArray.push(data[id]);
+            }
+          }
+          else{
             propertyArray.push(data[id]);
           }
         }
