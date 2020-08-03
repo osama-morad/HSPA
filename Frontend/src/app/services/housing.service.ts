@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { IProperty } from '../property/IProperty.interface';
 import { IPropertyBase } from '../model/IPropertyBase';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Property } from '../model/property';
 
 @Injectable({
@@ -16,14 +16,15 @@ export class HousingService {
   getProperty(Id: number){
     return this.getAllProperties().pipe(
       map(propertiesArray => {
+        //throw new Error("some resolver error");
         return propertiesArray.find(p => p.Id === Id);
       })
     );
   }
-  getAllProperties(sellRent?: number): Observable<IPropertyBase[]>{
+  getAllProperties(sellRent?: number): Observable<Property[]>{
     return this.http.get('data/properties.json').pipe(
       map(data => {
-        const propertyArray: Array<IPropertyBase> = [];
+        const propertyArray: Array<Property> = [];
         const newProperties = JSON.parse(localStorage.getItem('newProp'));
         if (newProperties){
           for (const id in newProperties)

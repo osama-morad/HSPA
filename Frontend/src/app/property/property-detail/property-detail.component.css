@@ -10,3 +10,8 @@
 .card-title {
     color:#0069d6;
 }
+
+.ngx-gallery { 
+    display: inline-block; 
+    margin-bottom: 20px; 
+}

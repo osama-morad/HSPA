@@ -25,12 +25,14 @@ import { AutoCompleteGoogleAddressComponent } from './autoCompleteGoogleAddress/
 import { AgmCoreModule } from '@agm/core';
 import { GoogleAddressLocationComponent } from './googleAddressLocation/googleAddressLocation.component';
 import { GoogleLocationService } from './services/googleLocation.service';
+import { PropertyDetailResolverService } from './property/property-detail/proprety-detail-resolver.service'
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 const appRoutes: Routes = [
    { path: '', component: PropertyListComponent },
    { path: 'rent-property', component: PropertyListComponent },
    { path: 'add-property', component: AddPropertyComponent },
-   { path: 'property-detail/:id', component: PropertyDetailComponent },
+   { path: 'property-detail/:id', component: PropertyDetailComponent, resolve: {prp: PropertyDetailResolverService} },
    { path: 'user/login', component: UserLoginComponent },
    { path: 'user/register', component: UserRegisterComponent },
    { path: '**', component: PropertyListComponent }
@@ -64,14 +66,16 @@ const appRoutes: Routes = [
       AgmCoreModule.forRoot({
          apiKey: 'AIzaSyCfE339LfYiWOPVIUB_DHh3IMS3nc5iBuQ',//'AIzaSyC-V4vfs6kHlkgNbHrBTtyWhNs38RwfV70',
          libraries: ['places']
-       })
+       }),
+       NgxGalleryModule
    ],
    providers: [
       HousingService,
       UserServiceService,
       AuthenticateService,
       HereLocationService,
-      GoogleLocationService
+      GoogleLocationService,
+      PropertyDetailResolverService
    ],
    bootstrap: [
       AppComponent
