@@ -5,3 +5,5 @@ npm install @agm/core --save
 npm install @types/googlemaps --save-dev
 
 npm i @types/googlemaps
+
+npm install @kolkov/ngx-gallery --save
