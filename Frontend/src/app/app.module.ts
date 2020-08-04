@@ -27,6 +27,7 @@ import { GoogleAddressLocationComponent } from './googleAddressLocation/googleAd
 import { GoogleLocationService } from './services/googleLocation.service';
 import { PropertyDetailResolverService } from './property/property-detail/proprety-detail-resolver.service'
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { HereAddressLocationComponent } from './here-address-location/here-address-location.component';
 
 const appRoutes: Routes = [
    { path: '', component: PropertyListComponent },
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
       UserLoginComponent,
       UserRegisterComponent,
       AutoCompleteGoogleAddressComponent,
-      GoogleAddressLocationComponent
+      GoogleAddressLocationComponent,
+      HereAddressLocationComponent
    ],
    imports: [
       BrowserModule,
