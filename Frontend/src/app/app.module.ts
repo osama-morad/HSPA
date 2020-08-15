@@ -28,6 +28,8 @@ import { GoogleLocationService } from './services/googleLocation.service';
 import { PropertyDetailResolverService } from './property/property-detail/proprety-detail-resolver.service'
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HereAddressLocationComponent } from './here-address-location/here-address-location.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 const appRoutes: Routes = [
    { path: '', component: PropertyListComponent },
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
       UserRegisterComponent,
       AutoCompleteGoogleAddressComponent,
       GoogleAddressLocationComponent,
-      HereAddressLocationComponent
+      HereAddressLocationComponent,
+      FilterPipe,
+      SortPipe
    ],
    imports: [
       BrowserModule,
